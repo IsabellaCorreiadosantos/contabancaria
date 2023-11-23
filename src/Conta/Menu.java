@@ -1,5 +1,7 @@
 package Conta;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Conta.model.Conta;
@@ -13,15 +15,10 @@ public class Menu {
 	
 	public static void main(String[] args) {
 
-		int opcao;
+		int opcao = 0;
 
         
-		Conta c1 = new Conta(3, 123, 1, "Mariana", 500000.0f);
-		c1.visualizar();
-		c1.sacar(12000.0f);
-		c1.visualizar();
-		c1.depositar(5000.0f);
-		c1.visualizar();
+		
         
 		
 		ContaCorrente cc1 = new ContaCorrente(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
@@ -60,59 +57,91 @@ public class Menu {
 			System.out.println("*****************************************************");
 			System.out.println("Entre com a opção desejada:                          ");
 			System.out.println("                                                     ");
-			opcao = leia.nextInt();
 			
-			if(opcao == 9) {
+			try {
+				opcao = leia.nextInt();
+			}catch(InputMismatchException e){
+				System.out.println("\nDigite valores inteiros!");
+				leia.nextLine();
+				opcao=0;
+			}
+
+			if (opcao == 9) {
 				System.out.println("\nBanco do Brazil com Z - O seu futuro começa aqui!");
-                  		sobre();
-				leia.close();
+				sobre();
+                 		leia.close();
 				System.exit(0);
 			}
-			
-			switch(opcao) {
+
+			switch (opcao) {
 			case 1:
 				System.out.println("\n Criar Conta");
-				
-                 break;
+
+				keyPress();
+				break;
 			case 2:
 				System.out.println("\n Listar todas as Contas");
-				
-                 break;
+
+				keyPress();
+				break;
 			case 3:
 				System.out.println("\n Buscar Conta por número");
-				
+
+				keyPress();
 				break;
 			case 4:
 				System.out.println("\n Atualizar dados da Conta");
-				
-                 break;
+
+				keyPress();
+				break;
 			case 5:
 				System.out.println("\n Apagar Conta");
-				
-                 break;
+
+				keyPress();
+				break;
 			case 6:
 				System.out.println("\n Sacar");
-				
+
+				keyPress();
 				break;
-             case 7:
+			case 7:
 				System.out.println("\n Depositar");
-				
+
+				keyPress();
 				break;
-             case 8:
+			case 8:
 				System.out.println("\n Transferir");
-				
+
+				keyPress();
 				break;
 			default:
-				System.out.println("\nOpção Inválida");
-                 break;
+				System.out.println("\nOpção Inválida" + Cores.TEXT_RESET);
+				
+				keyPress();
+				break;
 			}
-        }
+		}
 	}
-	public static void sobre() {
+
+    	public static void sobre() {
 		System.out.println("\n*********************************************************");
-		System.out.println("Projeto Desenvolvido por:Isabella Correia dos Santos ");
+		System.out.println("Projeto Desenvolvido por: Isabella Correia dos Santos ");
 		System.out.println("Generation Brasil - generation@generation.org");
 		System.out.println("github.com/conteudoGeneration");
 		System.out.println("*********************************************************");
+	}
+    
+	public static void keyPress() {
+
+		try {
+
+			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+			System.in.read();
+
+		} catch (IOException e) {
+
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+
+		}
 	}
 }
