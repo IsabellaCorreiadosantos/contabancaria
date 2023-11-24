@@ -26,14 +26,14 @@ public class ContaController implements ContaRepository {
 
 	@Override
 	public void cadastrar(Conta conta) {
-		
+		listaContas.add(conta);
+		System.out.println("\nA Conta número: " + conta.getNumero() + " foi criada com sucesso!");
 		
 	}
 
 	@Override
 	public void atualizar(Conta conta) {
-		listaContas.add(conta);
-		System.out.println("\nA Conta número: " + conta.getNumero() + " foi criada com sucesso!");
+		
 	}
 
 	@Override
